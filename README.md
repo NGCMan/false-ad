@@ -11,6 +11,6 @@ Currently challenges, most achievements, and most infinity upgrades don't work. 
 Please do create an issue if there is anything weird or wrong.
 
 Most notable changes:
-Dimensions 9, 10, 11, 12, 13, 14, 15, 16
-New infinity upgrades
-No galaxies or replicantis
+- Dimensions 9, 10, 11, 12, 13, 14, 15, 16
+- New infinity upgrades
+- No galaxies or replicantis
