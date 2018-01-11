@@ -38,7 +38,7 @@ const AchievementsText = [
     {'text': 'Antimatter Apocalypse', 'tooltip': 'Get over 10 QtVg (10e79) antimatter'},
     {'text': "There's no point in doing that", 'tooltip': 'Buy a single First Dimension when you have over 1e150 of them. Reward: First Dimensions are 10% stronger'},
     {'text': 'I forgot to nerf that', 'tooltip': 'Get any Dimension multiplier over 10 No (10e30). Reward: First Dimensions are 5% stronger'},
-    {'text': "That's a lot of infinites", 'tooltip': 'Reach Infinity 10 times'}
+    {'text': "That's a lot of infinities", 'tooltip': 'Reach Infinity 10 times'}
   ], [
     {'text': "You didn't need it anyway", 'tooltip': 'Reach Infinite antimatter without having any 12th Dimensions. Reward: Dimensions 1-11 are 2% stronger'},
     {'text': 'One for each dimension', 'tooltip': 'Play for 12 days. Reward: Extremely small time multiplier.'},
@@ -49,8 +49,8 @@ const AchievementsText = [
   ], [
     {'text': 'Over in 30 seconds', 'tooltip': 'Have antimatter/sec exceed your current antimatter for 30 consecutive seconds'},
     {'text': 'Faster than a potato', 'tooltip': 'Get more than 100 Sx (100e21) ticks per second. Reward: Reduces starting tick interval by 2%'},
-    {'text': 'Multidimensional', 'tooltip': 'Reach 1 Qd (1e12) of all dimensions except 8th'},
-    {'text': 'Daredevil', 'tooltip': 'Complete 2 challenges'},
+    {'text': 'Multidimensional', 'tooltip': 'Reach 1 T (1e12) of all dimensions except 16th'},
+    {'text': 'Daredevil', 'tooltip': 'Complete a challenge'},
     {'text': 'AntiChallenged', 'tooltip': 'Complete all the challenges. Reward: All dimensions are 10% stronger.'},
     {'text': 'The 9th dimension can be a lie', 'tooltip': 'Reach Infinite antimatter without having any Dimensions 9-12. Reward: Dimensions 1-8 are 2% stronger'}
   ], [
@@ -72,12 +72,12 @@ const AchievementsText = [
     {'text': 'Doubly lucky', 'tooltip': 'Buy a single 14th Dimension'},
     {'text': 'TODO: write achievement description', 'tooltip': 'Buy a single 15th Dimension'},
     {'text': '4865786564 2044696d65 6e73696f6e', 'tooltip': 'Buy a single 16th Dimension'},
-    {'text': 'Faster than a squared potato', 'tooltip': 'Reach 1e52 ticks per second. Reward: -2% tickspeed'},
+    {'text': 'Faster than a squared potato', 'tooltip': 'Reach 1e52 ticks per second. Reward: -4% tickspeed'},
     {'text': 'You did this again just for the achievement right?', 'tooltip': 'Complete the Third Dimension Autobuyer challenge in 10 seconds or less. Reward: First dimensions are 50% stronger.'},
   ], [
     {'text': 'ERROR 909: Dimension not found', 'tooltip': 'Get to infinity with only a single first Dimension and nothing else. Reward: First Dimensions are 3 times stronger'},
     {'text': "Can't hold all these infinities", 'tooltip': 'Get all Dimension multipliers over 1e308. Reward: All dimensions 10% stronger'},
-    {'text': "This achievement doesn't exist", 'tooltip': 'Get 9.9999e9999 antimatter. Reward: Dimensions are more powerful the more unspent antimatter you have.'},
+    {'text': "This achievement doesn't exist", 'tooltip': 'Get 17.1717e1717 antimatter. Reward: Dimensions are more powerful the more unspent antimatter you have.'},
     {'text': 'End me', 'tooltip': 'Get the sum of all best challenge times under 5 seconds. Reward: All dimensions 40% stronger, but only in challenges'},
     {'text': 'Spreading Cancer', 'tooltip': 'Reach Infinity 10 times while using cancer notation.'},
     {'text': 'How the antitables have turned', 'tooltip': 'Get 16th Dimension multiplier to be highest, 15th Dimension multiplier second highest etc. Reward: Each dimension gains a boost proportional to tier (16th dimension gets 16%, 15th gets 15%, etc.)'},
@@ -93,8 +93,8 @@ const AchievementsText = [
     {'text': 'Ludicrous Speed', 'tooltip': 'Big Crunch for 1e200 IP in 2 seconds or less. Reward: All dimensions are significantly stronger in first 5 seconds of infinity.'},
     {'text': 'I brake for nobody', 'tooltip': 'Big Crunch for 1e250 IP in 20 seconds or less. Reward: All dimensions are significantly stronger in first 60 seconds of infinity.'},
     {'text': 'MAXIMUM OVERDRIVE', 'tooltip': 'Reach 1e300 IP/min. Reward: Additional 4x multiplier to IP.'},
-    {'text': 'Yes. This is hell.', 'tooltip': 'Get the sum of Infinity Challenge times under 5 seconds.'},
-    {'text': "This achievement doesn't exist II", 'tooltip': 'Reach 9.99999e999 IP. Reward: Gain more IP based on amount of antimatter you had when crunching.'}
+    {'text': 'Boosting to the max', 'tooltip': 'Get 100 tickspeed boosts.'},
+    {'text': "This achievement doesn't exist II", 'tooltip': 'Reach 17.1717e1717 IP. Reward: Gain more IP based on amount of antimatter you had when crunching.'}
   ], [
     {'text': 'Time is relative', 'tooltip': 'Go Eternal.'},
     {'text': 'Fast is also relative', 'tooltip': 'Eternity in under 2 hours. Reward: Start eternities with 1e5 IP.'},
@@ -107,7 +107,7 @@ const AchievementsText = [
     {'text': 'Do you really need a guide for this?', 'tooltip': 'Eternity with the infinitied stat under 10.'},
     {'text': 'Infinity is eternity', 'tooltip': 'Eternity on your first infinity.'},
     {'text': '90 degrees to eternity', 'tooltip': 'Eternity on your first infinity with only Dimensions 1-8.'},
-    {'text': 'The 9th dimension was never a lie, the 9th dimension will never be a lie', 'tooltip': 'Buy a single Ninth Time Dimension'},
+    {'text': 'The 9th dimension was never a lie, the 9th dimension will never be a lie', 'tooltip': 'Buy a single Ninth Time Dimension.'},
     {'text': 'Time for a break', 'tooltip': 'Break Eternity. Reward: win the game (whatever that means).'}
   ]
 ];
@@ -115,11 +115,18 @@ const AchievementsText = [
 const challengeList = [
   'challenge-1', 'challenge-2', 'challenge-3', 'challenge-4',
   'challenge-5', 'challenge-6', 'challenge-7', 'challenge-8',
-  'challenge-5', 'challenge-6', 'challenge-7', 'challenge-8',
   'challenge-9', 'challenge-10', 'challenge-11', 'challenge-12',
+  'challenge-13', 'challenge-14', 'challenge-15', 'challenge-16',
   'challenge-tickspeed', 'challenge-shift',
   'challenge-bigcrunch', 'challenge-hyper'
 ];
+
+const challNameDict = {
+  'tickspeed': 'Tickspeed Challenge',
+  'shift': 'Dimension Shift Challenge',
+  'bigcrunch': 'Big Crunch Challenge',
+  'hyper': 'Hyper Challenge'
+}
 
 const infinityUpgrades = [
   [
@@ -300,7 +307,7 @@ const infinityUpgrades = [
   ],
   [
     {
-      "text": "Percentages in challenges are multiplied by 100<br>Cost: 100K IP",
+      "text": "Percentages in challenges 2 and 3 are multiplied by 100<br>Cost: 100K IP",
       "name": "percentMultiply",
       "cost": 100000
     },
@@ -321,3 +328,7 @@ const infinityUpgrades = [
     }
   ]
 ];
+
+const infinityUpgradesNameList = [].concat.apply([], infinityUpgrades).map(function (x) {
+  return x.name;
+});

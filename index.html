@@ -344,22 +344,24 @@
                 </tbody>
                 </table>
                 <table id="resetTable" style="width: 100%">
+                  <tbody>
                     <tr id="dimShift" style="font-size: 15px">
-                        <td id="resetLabelShift">
-                            Dimension Shift: requires 20 Fourth Dimensions
-                        </td>
-                        <td>
-                            <button id="softResetShift" style="color:black; width: 200px; height: 25px; font-size: 9px" class="storebtn">Reset the game for a new Dimension</button>
-                        </td>
+                      <td id="resetLabelShift">
+                        Dimension Shift: requires 20 Fourth Dimensions
+                      </td>
+                      <td>
+                        <button id="softResetShift" style="color:black; width: 200px; height: 25px; font-size: 9px" class="storebtn">Reset the game for a new Dimension</button>
+                      </td>
                     </tr>
                     <tr id="dimBoost" style="font-size: 15px">
-                        <td id="resetLabelBoost">
-                            Dimension Boost: requires 20 Eighth Dimensions
-                        </td>
-                        <td>
-                            <button id="softResetBoost" style="color:black; width: 200px; height: 25px; font-size: 9px" class="storebtn">Reset the game for a Boost/button>
-                        </td>
+                      <td id="resetLabelBoost">
+                        Dimension Boost: requires 20 Eighth Dimensions
+                      </td>
+                      <td>
+                        <button id="softResetBoost" style="color:black; width: 200px; height: 25px; font-size: 9px" class="storebtn">Reset the game for a Boost/button>
+                      </td>
                     </tr>
+                  <tbody>
                 </table>
                 <button id="quickReset" style="color:black; width: 200px; height: 50px; font-size: 12px; display: none" class="storebtn">Lose a reset, returning to the start of the reset</button>
             </div>
@@ -611,8 +613,8 @@
             <br>
             <tr>
                 <td><button class="secondarytabbtn" onclick="showStatsTab('stats')">Statistics</button><td>
-                <td><button class="secondarytabbtn" onclick="showStatsTab('challengetimes')" id="challengetimesbtn" style="display:none" >Challenge records</button><td>
-                <td><button class="secondarytabbtn" onclick="showStatsTab('infchallengetimes')" id="infchallengesbtn" style="display:none">InfChallenge records</button><td>
+                <td><button class="secondarytabbtn" onclick="showStatsTab('challenge-times')" id="challengetimesbtn" style="display:none" >Challenge records</button><td>
+                <td><button class="secondarytabbtn" onclick="showStatsTab('infchallenge-times')" id="infchallengesbtn" style="display:none">InfChallenge records</button><td>
                 <td><button class="secondarytabbtn" onclick="showStatsTab('lasttenruns')" id="pastinfs" style="display:none">Past Infinities</button><td>
                 <td><button class="secondarytabbtn" onclick="showStatsTab('lastteneternities')" id="pasteternities" >Past Eternities</button><td>
             </tr>
@@ -629,22 +631,9 @@
             <div id="totalTime">You have played for </div>
             <div id="infoScale">If every antimatter were a planck volume, you would have enough to </div>
             </div>
-            <div id="challengetimes" class="statstab" >
-                <br>
-                <div id="challengetime2"></div>
-                <div id="challengetime3"></div>
-                <div id="challengetime4"></div>
-                <div id="challengetime5"></div>
-                <div id="challengetime6"></div>
-                <div id="challengetime7"></div>
-                <div id="challengetime8"></div>
-                <div id="challengetime9"></div>
-                <div id="challengetime10"></div>
-                <div id="challengetime11"></div>
-                <div id="challengetime12"></div>
-                <br>
+            <div id="challenge-times" class="statstab">
             </div>
-            <div id="infchallengetimes" class="statstab" >
+            <div id="infchallenge-times" class="statstab" >
                     <br>
                     <div id="infchallengetime1"></div>
                     <div id="infchallengetime2"></div>
@@ -839,7 +828,7 @@
                         </td>
                         <td>
                             <div class= "challengediv">
-                                <span style="font-size: 110%">There are only eight dimensions, but there's a "Dimension Boost" (much like a shift) every 20 Eighth Dimensions.</span>
+                                <span style="font-size: 110%">There are only eight dimensions, but there's a "Dimension Boost" (much like a shift) every 20 of the current maximum dimension.</span>
                                 <br>
                                 <br>
 
@@ -921,7 +910,7 @@
 
                                 <div class="outer">
 
-                                    <button id="challenge-15" class="challengesbtn">Start</button>
+                                    <button id="challenge-13" class="challengesbtn">Start</button>
                                     <br>
                                     <span>Reward: 13th Dimension autobuyer</span>
                                 </div>
@@ -935,7 +924,7 @@
 
                                 <div class="outer">
 
-                                    <button id="challenge-16" class="challengesbtn">Start</button>
+                                    <button id="challenge-14" class="challengesbtn">Start</button>
                                     <br>
                                     <span>Reward: 14th Dimension autobuyer</span>
                                 </div>
@@ -1057,7 +1046,6 @@
                 <td><button class="secondarytabbtn" onclick="showInfTab('preinf')">Upgrades</button><td>
                 <td><button class="secondarytabbtn" onclick="showInfTab('autobuyers')">Autobuyers</button><td>
                 <td><button id="postinfbtn" class="secondarytabbtn" onclick="showInfTab('postinf')" >Break Infinity</button><td>
-                <td><button id="replicantitabbtn" class="secondarytabbtn" onclick="showInfTab('replicantis')">Replicantis</button><td>
             </tr>
             <div id="preinf" class="inftab">
             <br>
@@ -1066,8 +1054,8 @@
             <br>
             <table>
               <tr>
-                <td><button id="infiMult" class="infinimultbtn">Multiply infinity points from all sources by 2 <br>currently: <br>Cost: 100 IP</button></td>
-                <td><button id="tickspeedBoost" class="infinimultbtn">Get a Tickspeed Boost (persists between infinities) <br>currently: <br>Cost: 100 IP</button></td>
+                <td><button id="infiMult" class="infinimultbtn">Multiply infinity points from all sources by 2 <br>currently: <br>Cost: 10 IP</button></td>
+                <td><button id="tickspeedBoost" class="infinimultbtn">Get a Tickspeed Boost (persists between infinities) <br>currently: <br>Cost: 10 IP</button></td>
               </tr>
             </table>
             <br>
@@ -1093,291 +1081,77 @@
                 <button class="storebtn" id="togglebulk" style="font-size: 100%; width: 150px; height: 40px;margin: 3px" onclick="toggleBulk()">Disable bulk buy                     </button>
                 <button class="storebtn" id="togglecrunchmode" style="font-size: 100%; width: 150px; height: 40px;margin: 3px; display: none" onclick="toggleCrunchMode()">Auto crunch mode: amount</button>
                 <br>
-                <div class="autoBuyerDiv" id="autoBuyerEter">
+                <div class="autoBuyerDiv" id="autoBuyer-eter">
                     <div>Automatic Eternity</div>
                     <div><span>Amount of EP to wait until reset:</span>
-                    <input type="text" onchange="updatePriorities()" id="priority13"></input></div>
+                    <input type="text" onchange="updatePriorities()" id="ep-num-eter"></input></div>
                     <br>
                     <span style="font-size: 80%">Is active</span>
-                    <input type="checkbox" onchange="updateAutobuyers()"  id="eternityison"></input>
+                    <input type="checkbox" onchange="updateAutobuyers()"  id="ison-eternity"></input>
                 </div>
-                <tr>
-                        <td>
-                            <div class="autoBuyerDiv" id="autoBuyerDimBoost" style="font-size: 11px;">
-                                <div>Automatic DimBoosts</div>
-                                <button class="autobuyerbtn" id="buyerBtnDimBoost">46% smaller interval<br>Cost: 2 points</button>
-                                <div style="font-size: 80%"id="intervalDimBoost">Current interval: 30 seconds</div>
-                                <span style="font-size: 80%">Max 8ths used on reset:</span>
-                                <input type="text" onchange="updatePriorities()" id="priority10"></input>
-                                <br>
-                                <span style="font-size: 80%">Galaxies required to always Dimboost:</span>
-                                <input type="text" onchange="updatePriorities()" id="overGalaxies"></input>
-                                <br>
-                                <div id="bulkdimboost">
-                                    <span style="font-size: 80%" id="bulklabel">Bulk DimBoost amount:</span>
-                                    <input type="text" onchange="updatePriorities()" id="bulkDimboost"></input>
-                                </div>
-                                <br>
-                                <span style="font-size: 80%">Is active</span>
-                                <input type="checkbox" onchange="updateAutobuyers()"   id="10ison"></input>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="autoBuyerDiv" id="autoBuyerGalaxies">
-                                <div>Automatic Galaxies</div>
-                                <button class="autobuyerbtn" id="buyerBtnGalaxies">46% smaller interval<br>Cost: 2 points</button>
-                                <div style="font-size: 80%"id="intervalGalaxies">Current interval: 30 seconds</div>
-                                <span>Max Galaxies:</span>
-                                <input type="text" onchange="updatePriorities()" id="priority11"></input>
-                                <br>
-                                <div id="galaxybulk" style="display: none">
-                                    <span style="font-size: 80%">Buy max galaxies every X seconds (0 to always buy):</span>
-                                    <input type="text" onchange="updatePriorities()" id="bulkgalaxy"></input>
-                                </div>
-                                <br>
-                                <span style="font-size: 80%">Is active</span>
-                                <input type="checkbox" onchange="updateAutobuyers()"   id="11ison"></input>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="autoBuyerDiv" id="autoBuyerInf">
-                                <div>Automatic Big Crunch</div>
-                                <button class="autobuyerbtn" id="buyerBtnInf">46% smaller interval<br>Cost: 2 points</button>
-                                <div style="font-size: 80%"id="intervalInf">Current interval: 60 seconds</div>
-                                <div id="iplimit"><span id="limittext">Amount of IP to wait until reset:</span>
-                                <input type="text" onchange="updatePriorities()" id="priority12"></input></div>
-                                <br>
-                                <span style="font-size: 80%">Is active</span>
-                                <input type="checkbox" onchange="updateAutobuyers()"   id="12ison"></input>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-
-                    </tr>
-                <tr>
+                  <tr id='irregularRow'>
                     <td>
-                        <div class="autoBuyerDiv" id="autoBuyer1">
-                            <div>1st Dimension Autobuyer</div>
-                            <button class="autobuyerbtn" id="buyerBtn1">46% smaller interval<br>Cost: 2 points</button>
-                            <button class="autobuyerbtn" id="toggleBtn1">Buys singles</button>
-                            <div style="font-size: 80%"id="interval1">Current interval: 5 seconds<br></div>
-                            <span>Priority:</span>
-                            <select onchange="updatePriorities()" id="priority1">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            </select>
-                            <br>
-                            <span style="font-size: 80%">Is active</span>
-                            <input type="checkbox" onchange="updateAutobuyers()"   id="1ison"></input>
-                        </div>
+                      <div class="autoBuyerDiv" id="autoBuyer-tickspeed">
+                        <div>Tickspeed Autobuyer</div>
+                        <button class="autobuyerbtn" id="buyerBtn-tickspeed">46% smaller interval<br>Cost: 2 points</button>
+                        <button class="autobuyerbtn" id="toggleBtn-tickspeed">Buys singles</button>
+                        <div style="font-size: 80%"id="interval-tickspeed">Current interval: 5 seconds<br></div>
+                        <span>Priority:</span>
+                        <select onchange="updatePriorities()" id="priority-tickspeed">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                        </select>
+                        <br>
+                        <span style="font-size: 80%">Is active</span>
+                        <input type="checkbox" onchange="updateAutobuyers()"   id="ison-tickspeed"></input>
+                      </div>
                     </td>
                     <td>
-                        <div class="autoBuyerDiv" id="autoBuyer2">
-                            <div>2nd Dimension Autobuyer</div>
-                            <button class="autobuyerbtn" id="buyerBtn2">46% smaller interval<br>Cost: 2 points</button>
-                            <button class="autobuyerbtn" id="toggleBtn2">Buys singles</button>
-                            <div style="font-size: 80%"id="interval2">Current interval: 5 seconds<br></div>
-                                <span>Priority:</span>
-                            <select onchange="updatePriorities()" id="priority2">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            </select>
-                            <br>
-                            <span style="font-size: 80%">Is active</span>
-                            <input type="checkbox" onchange="updateAutobuyers()"   id="2ison"></input>
-                        </div>
+                      <div class="autoBuyerDiv" id="autoBuyer-shift" style="font-size: 11px;">
+                        <div>Automatic Shifts</div>
+                        <button class="autobuyerbtn" id="buyerBtn-shift">46% smaller interval<br>Cost: 2 points</button>
+                        <div style="font-size: 80%"id="interval-shift">Current interval: 30 seconds</div>
+                        <span style="font-size: 80%">Max number of dimensions used on reset:</span>
+                        <input type="text" onchange="updatePriorities()" id="max-dim-shift"></input>
+                        <br>
+                        <span style="font-size: 80%">Is active</span>
+                        <input type="checkbox" onchange="updateAutobuyers()"   id="ison-shift"></input>
+                      </div>
                     </td>
                     <td>
-                        <div class="autoBuyerDiv" id="autoBuyer3">
-                            <div>3rd Dimension Autobuyer</div>
-                            <button class="autobuyerbtn" id="buyerBtn3">46% smaller interval<br>Cost: 2 points</button>
-                            <button class="autobuyerbtn" id="toggleBtn3">Buys singles</button>
-                            <div style="font-size: 80%"id="interval3">Current interval: 5 seconds<br></div>
-                            <span>Priority:</span>
-                            <select onchange="updatePriorities()" id="priority3">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            </select>
-                            <br>
-                            <span style="font-size: 80%">Is active</span>
-                            <input type="checkbox" onchange="updateAutobuyers()"   id="3ison"></input>
+                      <div class="autoBuyerDiv" id="autoBuyer-bigcrunch">
+                        <div>Automatic Big Crunch</div>
+                        <button class="autobuyerbtn" id="buyerBtn-bigcrunch">46% smaller interval<br>Cost: 2 points</button>
+                        <div style="font-size: 80%"id="interval-bigcrunch">Current interval: 60 seconds</div>
+                        <div id="iplimit"><span id="limittext">Amount of IP to wait until reset:</span>
+                          <input type="text" onchange="updatePriorities()" id="ip-bigcrunch"></input>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="autoBuyerDiv" id="autoBuyer4">
-                            <div>4th Dimension Autobuyer</div>
-                            <button class="autobuyerbtn" id="buyerBtn4">46% smaller interval<br>Cost: 2 points</button>
-                            <button class="autobuyerbtn" id="toggleBtn4">Buys singles</button>
-                            <div style="font-size: 80%"id="interval4">Current interval: 5 seconds<br></div>
-                            <span>Priority:</span>
-                            <select onchange="updatePriorities()" id="priority4">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            </select>
-                            <br>
-                            <span style="font-size: 80%">Is active</span>
-                            <input type="checkbox" onchange="updateAutobuyers()"   id="4ison"></input>
-                        </div>
+                        <br>
+                        <span style="font-size: 80%">Is active</span>
+                        <input type="checkbox" onchange="updateAutobuyers()"   id="ison-bigcrunch"></input>
+                      </div>
                     </td>
                     <td>
-                        <div class="autoBuyerDiv" id="autoBuyer5">
-                            <div>5th Dimension Autobuyer</div>
-                            <button class="autobuyerbtn" id="buyerBtn5">46% smaller interval<br>Cost: 2 points</button>
-                            <button class="autobuyerbtn" id="toggleBtn5">Buys singles</button>
-                            <div style="font-size: 80%"id="interval5">Current interval: 5 seconds<br></div>
-                            <span>Priority:</span>
-                            <select onchange="updatePriorities()" id="priority5">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            </select>
-                            <br>
-                            <span style="font-size: 80%">Is active</span>
-                            <input type="checkbox" onchange="updateAutobuyers()"   id="5ison"></input>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="autoBuyerDiv" id="autoBuyer6">
-                            <div>6th Dimension Autobuyer</div>
-                            <button class="autobuyerbtn" id="buyerBtn6">46% smaller interval<br>Cost: 2 points</button>
-                            <button class="autobuyerbtn" id="toggleBtn6">Buys singles</button>
-                            <div style="font-size: 80%"id="interval6">Current interval: 5 seconds<br></div>
-                            <span>Priority:</span>
-                            <select onchange="updatePriorities()" id="priority6">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            </select>
-                            <br>
-                            <span style="font-size: 80%">Is active</span>
-                            <input type="checkbox" onchange="updateAutobuyers()"   id="6ison"></input>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="autoBuyerDiv" id="autoBuyer7">
-                            <div>7th Dimension Autobuyer</div>
-                            <button class="autobuyerbtn" id="buyerBtn7">46% smaller interval<br>Cost: 2 points</button>
-                            <button class="autobuyerbtn" id="toggleBtn7">Buys singles</button>
-                            <div style="font-size: 80%"id="interval7">Current interval: 5 seconds<br></div>
-                            <span>Priority:</span>
-                            <select onchange="updatePriorities()" id="priority7">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            </select>
-                            <br>
-                            <span style="font-size: 80%">Is active</span>
-                            <input type="checkbox" onchange="updateAutobuyers()"   id="7ison"></input>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="autoBuyerDiv" id="autoBuyer8">
-                            <div>8th Dimension Autobuyer</div>
-                            <button class="autobuyerbtn" id="buyerBtn8">46% smaller interval<br>Cost: 2 points</button>
-                            <button class="autobuyerbtn" id="toggleBtn8">Buys singles</button>
-                            <div style="font-size: 80%"id="interval8">Current interval: 5 seconds<br></div>
-                            <span>Priority:</span>
-                            <select onchange="updatePriorities()" id="priority8">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            </select>
-                            <br>
-                            <span style="font-size: 80%">Is active</span>
-                            <input type="checkbox" onchange="updateAutobuyers()"   id="8ison"></input>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="autoBuyerDiv" id="autoBuyerTickSpeed">
-                            <div>Tickspeed Autobuyer</div>
-                            <button class="autobuyerbtn" id="buyerBtnTickSpeed">46% smaller interval<br>Cost: 2 points</button>
-                            <button class="autobuyerbtn" id="toggleBtnTickSpeed">Buys singles</button>
-                            <div style="font-size: 80%"id="intervalTickSpeed">Current interval: 5 seconds<br></div>
-                            <span>Priority:</span>
-                            <select onchange="updatePriorities()" id="priority9">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            </select>
-                            <br>
-                            <span style="font-size: 80%">Is active</span>
-                            <input type="checkbox" onchange="updateAutobuyers()"   id="9ison"></input>
-                        </div>
+                      <div class="autoBuyerDiv" id="autoBuyer-hyper">
+                        <div>Hyper Autobuyer</div>
+                        <button class="autobuyerbtn" id="buyerBtn-hyper">46% smaller interval<br>Cost: 2 points</button>
+                        <div style="font-size: 80%"id="interval-hyper">Current interval: 30 seconds</div>
+                        <span>Commands to execute:</span>
+                        <textarea id="commands-hyper"></textarea>
+                        <br>
+                        <span style="font-size: 80%">Is active</span>
+                        <input type="checkbox" onchange="updateAutobuyers()"   id="ison-hyper"></input>
+                      </div>
                     </td>
                 </tr>
             </table>
-            <div class="autoBuyerDiv" id="autoBuyerSac">
-                <div>Automatic Sacrifice</div>
-                <div style="font-size: 80%">Current interval: 0.10 seconds</div>
-                <div id="iplimit"><span>Sacrifice when the multiplier is over:</span>
-                <input type="text" onchange="updatePriorities()" id="prioritySac"></input></div>
-                <br>
-                <span style="font-size: 80%">Is active</span>
-                <input type="checkbox" onchange="updateAutobuyers()" id="13ison"></input>
-            </div>
 
             <div>
                 <table id="footer">
@@ -1394,7 +1168,7 @@
         </div>
         <div id="postinf" class="inftab" align="center">
             <br>
-            <div id="abletobreak">You need to get Automated Big Crunch interval to 0.1 to be able to break infinity</div>
+            <div id="abletobreak">You need to complete all challenges and get Automated Big Crunch interval to 0.1 to be able to break infinity</div>
                 <button  id="break" class="infinistorebtn2" onclick="breakInfinity()" ach-tooltip="Cost multipliers post-infinity will begin increasing faster, but so will the Infinity Point gain">BREAK INFINITY</button>
                 <div>
                     <table id="footer">
@@ -1409,40 +1183,6 @@
                     </table>
                 </div>
         </div>
-        <div id="replicantis" class="inftab">
-            <br>
-            <button class="storebtn" id="replicantiunlock" onclick="unlockReplicantis()" style="width:200px; height: 80px">Unlock Replicantis<br>Cost: 1e140 IP</button>
-            <div id="replicantidiv" style="display: none">
-                <p style="font-size: 15px">You have <span id="replicantiamount" style="font-size:23px; color: black">0</span> replicanti. Translated to <span id="replicantimult" style="font-size:23px; color: black">0</span>x multiplier on all infinity dimensions</p>
-                <br>
-                <button class="storebtn" id="replicantichance" onclick="upgradeReplicantiChance()" style="width:180px; height: 50px; font-size: 10px">Replicate chance: 1%<br>+1% Costs: 1e6969 IP</button>
-                <button class="storebtn" id="replicantiinterval" onclick="upgradeReplicantiInterval()" style="width:180px; height: 50px; font-size: 10px">Interval: 1000ms<br>-> 900 Costs: 1e6969 IP</button>
-                <button class="storebtn" id="replicantimax" onclick="upgradeReplicantiGalaxy()" style="width:180px; height: 50px; font-size: 10px">Max Replicanti galaxies: 0<br>+1 Costs: 1e6969 IP</button>
-                <br>
-                <button class="storebtn" id="replauto1" onclick="toggleReplAuto('chance')" style="width:180px; font-size: 10px; visibility: hidden">Auto: ON</button>
-                <button class="storebtn" id="replauto2" onclick="toggleReplAuto('interval')" style="width:180px; font-size: 10px; visibility: hidden">Auto: ON</button>
-                <button class="storebtn" id="replauto3" onclick="toggleReplAuto('galaxy')" style="width:180px; font-size: 10px; visibility: hidden">Auto: ON</button>
-                <br><br><br>
-                <p id="replicantiapprox"></p>
-                <br>
-                <button class="storebtn" id="replicantireset" onclick="replicantiGalaxy()" style="width: 200px; height: 70px; font-size: 12px">Reset replicanti amount, but get a free galaxy</button>
-                <br>
-                <button class="storebtn" id="replicantiresettoggle" onclick="replicantiGalaxyAutoToggle()" style="width: 150px; height: 30px; font-size: 12px; display: none">Auto galaxy OFF</button>
-            </div>
-            <div id="footercontainer">
-                    <table id="footer">
-                        <tr>
-                            <td>
-                                <div style="text-align:center">
-                                    <a href="howto.html" target="_newtab">How to play  </a> |
-                                    <a href="https://ivark.github.io" target="_newtab">Original game</a>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-        </div>
-
         </div>
     </div>
     <div class="popup" id="update">

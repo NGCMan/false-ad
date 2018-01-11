@@ -30,7 +30,20 @@ var newsArray = ["TODO: consider removing news", "9 = 3^2, so the third dimensio
 "I think soon enough this game will stop being AD with more dimensions and become the first AD-like.",
 "13th dimension is a lie the same way the cake is a lie: it fails to show up for a long time, then it appears, and that's more or less the end of the game.",
 "If the news array in news.js gets to 50 lines, then Fake News will require 50 news messages, as in the original game.",
-"I was changing various occurances of player.resets to player.shiftResets. I realized that I replaced one occurance of player.resets with shiftResets() accidentally, but only after I moved onto the next. I used shift-enter to get back to my mistake. Then the whole file deleted itself. I wonder why..."];
+"I was changing various occurances of player.resets to player.shiftResets. I realized that I replaced one occurance of player.resets with shiftResets() accidentally, but only after I moved onto the next. I used shift-enter to get back to my mistake. Then the whole file deleted itself. I wonder why...",
+"I removed the wonderful quadratic formula used to buy max. I think, given that I increase dimension costs linearly, it could probably be fixed, but that seems like a bad use of time. So if you have 1e100000 antimatter and your Buy Max is lagging, blame me.",
+"I have a strategy of automating leverage maximization with a simple machine learning algorithm. What that means is that I used a lever to hold down Buy Max without me doing anything other than the setup, and figured out how to do so by the algorithm of learning about the relevant topic " +
+"(here, \"simple machines\") by reading the Wikipedia article.",
+"Challenge 12 is worse than you think. Do not expect to finish it until the sun goes supernova (and yes, I know that a supernova is not how the sun will die).",
+"In reality, False Antimatter Dimensions is just a fad.",
+"Cheatsheet for the original game's code: challenge1 is First Dimension, challenge2 is Second Dimenion, challenge3 is Third Dimension, " +
+"challenge4 is Dimension Boosts, challenge5 is Tickspeed, challenge6 is Fifth Dimension, " +
+"challenge7 is Big Crunch, challenge8 is Fourth Dimension, challenge9 is Seventh Dimension, " +
+"challenge10 is Sixth Dimension, challenge11 is Eighth Dimension, and challenge12 is Galaxies.",
+"Challenge 6 has about the right level of difficulty, but is somewhat different than in the original game. It's very surprising when that happens.",
+"There's a Tickspeed Challenge python helper in the github repository.",
+"Most of these news messages are about challenges. All I can say is that coming up with good news messages is challenging.",
+"I'm trying to test Challenge 15 but I have so many bonuses that it's taking forever to reset."];
 
 var specialNews = {
   'challenge_messages': [
