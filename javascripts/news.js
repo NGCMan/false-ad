@@ -43,7 +43,8 @@ var newsArray = ["TODO: consider removing news", "9 = 3^2, so the third dimensio
 "Challenge 6 has about the right level of difficulty, but is somewhat different than in the original game. It's very surprising when that happens.",
 "There's a Tickspeed Challenge python helper in the github repository.",
 "Most of these news messages are about challenges. All I can say is that coming up with good news messages is challenging.",
-"I'm trying to test Challenge 15 but I have so many bonuses that it's taking forever to reset."];
+"I'm trying to test Challenge 15 but I have so many bonuses that it's taking forever to reset.",
+"Oh, so that's how long eternity is - Literally nobody more than once"];
 
 var specialNews = {
   'challenge_messages': [
