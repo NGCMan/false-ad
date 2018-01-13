@@ -41,7 +41,7 @@ const AchievementsText = [
     {'text': "That's a lot of infinities", 'tooltip': 'Reach Infinity 10 times'}
   ], [
     {'text': "You didn't need it anyway", 'tooltip': 'Reach Infinite antimatter without having any 12th Dimensions. Reward: Dimensions 1-11 are 2% stronger'},
-    {'text': 'One for each dimension', 'tooltip': 'Play for 12 days. Reward: Extremely small time multiplier.'},
+    {'text': 'One for each dimension', 'tooltip': 'Play for 12 hours. Reward: Extremely small time multiplier.'},
     {'text': "That's fast!", 'tooltip': 'Go infinite in under 2 hours. Reward: Start with 1000 antimatter.'},
     {'text': 'Fake News', 'tooltip': 'Encounter 10 different news messages'},
     {'text': 'Supersanic', 'tooltip': 'Have antimatter/sec exceed your current antimatter above 1 Tg (1e63)'},

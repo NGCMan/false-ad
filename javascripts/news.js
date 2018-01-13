@@ -44,7 +44,12 @@ var newsArray = ["TODO: consider removing news", "9 = 3^2, so the third dimensio
 "There's a Tickspeed Challenge python helper in the github repository.",
 "Most of these news messages are about challenges. All I can say is that coming up with good news messages is challenging.",
 "I'm trying to test Challenge 15 but I have so many bonuses that it's taking forever to reset.",
-"Oh, so that's how long eternity is - Literally nobody more than once"];
+"Oh, so that's how long eternity is - Literally nobody more than once",
+"There is a known bug in which the Hyper Challenge only counts the time of the second part. This is not high-priority.",
+"Issue #15: bug reports mysteriously end up in the news array. Closed: could not be replicated. Please report if you see this issue in the wild.",
+"I tried to break infinity and was able to eternity in roughly three infinities. Thus, I conclude that breaking infinity is broken.",
+"The news array has only 49 messages and FAKE NEWS requires 50. I wonder how I'll fix this?",
+"Press F to pay antimatter for 15th dimension"];
 
 var specialNews = {
   'challenge_messages': [

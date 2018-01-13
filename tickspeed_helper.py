@@ -1,6 +1,6 @@
-inc = (3, 4, 5, 6, 8, 10, 12, 15, 20, 24, 30, 40)
+inc = (3, 4, 5, 6, 8, 10, 12, 15, 20, 24, 30, 40, 50, 60, 80, 100)
 
-start = (1, 2, 4, 6, 9, 13, 18, 24, 32, 41, 54, 68)
+start = (1, 2, 4, 6, 9, 13, 18, 24, 32, 41, 54, 68, 87, 111, 141, 175)
 
 def buy(t, i):
     return tuple(j + k if j == t[i] else j for j, k in zip(t, inc))
@@ -19,11 +19,11 @@ def buy_all(t, l):
     return t
 
 def main():
-    t = buy_all(start, (0, 1, 2, 3, 4))
+    t = start
     sol = next(path(t, 308))
     for i in sol:
         print(t)
-        print('123456789abc'[i])
+        print('123456789abcdefg'[i])
         t = buy(t, i)
     print(t)
 
