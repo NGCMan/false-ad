@@ -4,6 +4,7 @@
 
 <head>
     <title>False Antimatter Dimensions</title>
+    <meta http-equiv="Content-Security-Policy" content="img-src 'self'" />
     <meta name="False Antimatter Dimensions" content="A game about even huger numbers and watching them go up." />
     <h1 id="hiddenheader" style="display: none">False Antimatter Dimensions</h1>
     <script type="text/javascript" src="javascripts/jquery-3.2.1.min.js"></script>
@@ -335,7 +336,8 @@
             </table>
             <div id="antimatterdimensions" class="dimtab">
                 <p></p>
-                <button id="maxall" class="storebtn" style="font-size: 12px">Max all</Button>
+                <button id="maxall" class="storebtn" style="font-size: 12px">Max all</button>
+                <button id="levermax" class="storebtn" style="font-size: 12px; width: 200px">HTML should be set</button>
                 <span id="chall2Pow"></span>
                 <span id="chall3Pow"></span>
                 <table class="table" >
@@ -720,7 +722,6 @@
             <table class="table" align="center" style="margin: auto; display: none" id="challTabButtons">
                 <tr>
                     <td><button class="secondarytabbtn" onclick="showChallengesTab('challenges')">Challenges</button><td>
-                    <td><button class="secondarytabbtn" onclick="showChallengesTab('breakchallenges')">Infinity Challenges</button><td>
                 </tr>
             </table>
             <div id="nextchall"></div>

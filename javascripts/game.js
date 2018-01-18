@@ -73,10 +73,11 @@ function dimBoughtWithTwoBeforeCostMults(name) {
   if (name === undefined || name === null) {
     name = player.currentChallenge;
   }
+  let base = getCurrentBase(name);
   let a = [];
   for (let i = 1; i <= MAX_DIMENSION; i++) {
-    a.push(new Decimal(i * (i + 1) *
-      Math.pow(2, getCurrentBase(name)) / 2));
+    // Triangular numbers times 1000.
+    a.push(new Decimal(i * (i + 1) * Math.pow(base, 3)) / 2);
   }
   return a;
 }
@@ -335,6 +336,7 @@ var player = {
         limit: new Decimal(0),
         isOn: false
     },
+    leverClick: false,
     options: {
         newsHidden: false,
         notation: "Standard",
@@ -675,6 +677,9 @@ function onLoad() {
             animationOn: true
         }
     }
+    if (player.leverClick === undefined) {
+      player.leverClick = false;
+    }
     if (player.options.invert === true) player.options.theme = "Inverted"; player.options.invert = undefined;
     if (player.options.notation === undefined) player.options.notation = "Standard"
     if (player.options.challConf === undefined) player.options.challConf = false
@@ -958,6 +963,7 @@ function onLoad() {
 
     transformSaveToDecimal();
     updateCosts();
+    setLeverMaxHtml();
     updateTickSpeed();
     updateAchPow();
     updateChallenges();
@@ -2398,6 +2404,7 @@ function softReset (bulk, type) {
         autoCrunchMode: player.autoCrunchMode,
         respec: player.respec,
         eternityBuyer: player.eternityBuyer,
+        leverClick: player.leverClick,
         options: player.options
     };
     setExtraStartingDims();
@@ -2979,12 +2986,35 @@ function dimBoughtWithTwoBefore (challenge) {
   return inChallenge(challenge, "challenge-6");
 }
 
-document.getElementById("maxall").onclick = function () {
+function maxAll () {
   buyMaxTickSpeed();
 
-  for (var tier=1; tier<=MAX_DIMENSION;tier++) {
+  for (var tier = 1; tier <= MAX_DIMENSION; tier++) {
     buyManyDimensionAutobuyer(tier, Infinity);
   }
+}
+
+const off_on = {
+  true: 'on',
+  false: 'off'
+}
+
+function negateLeverClick () {
+  player.leverClick = !player.leverClick;
+  setLeverMaxHtml();
+}
+
+function setLeverMaxHtml () {
+  document.getElementById("levermax").innerHTML =
+  'Turn lever max ' + off_on[!player.leverClick];
+}
+
+document.getElementById("maxall").onclick = function () {
+  maxAll();
+}
+
+document.getElementById("levermax").onclick = function () {
+  negateLeverClick();
 }
 
 
@@ -3962,7 +3992,8 @@ document.getElementById("bigcrunch").onclick = function () {
         if (player.thisInfinityTime <= 600) giveAchievement("Forever isn't that long")
         if (player.thisInfinityTime <= 2) giveAchievement("Blink of an eye")
         let highest_dim = getHighestDim();
-        if (highest_dim <= 12) {
+        if (highest_dim < 12) {
+          // Don't give achievement if player has dimension 12.
           giveAchievement("You didn't need it anyway");
         }
         if (highest_dim <= 8) {
@@ -4121,6 +4152,7 @@ document.getElementById("bigcrunch").onclick = function () {
         autoCrunchMode: player.autoCrunchMode,
         respec: player.respec,
         eternityBuyer: player.eternityBuyer,
+        leverClick: player.leverClick,
         options: player.options
         };
 
@@ -4355,6 +4387,7 @@ function eternity() {
             autoCrunchMode: player.autoCrunchMode,
             respec: player.respec,
             eternityBuyer: player.eternityBuyer,
+            leverClick: player.leverClick,
             options: player.options
         };
         if (player.respec) respecTimeStudies()
@@ -4547,6 +4580,7 @@ function startChallenge(name) {
       autoCrunchMode: player.autoCrunchMode,
       respec: player.respec,
       eternityBuyer: player.eternityBuyer,
+      leverClick: player.leverClick,
       options: player.options
     };
     setExtraStartingDims();
@@ -5245,7 +5279,10 @@ function autoBuyerTick () {
 
 
 setInterval(function() {
-    autoBuyerTick();
+  if (player.leverClick) {
+    maxAll();
+  }
+  autoBuyerTick();
 }, 100);
 
 // news in news.js
@@ -5722,6 +5759,7 @@ function setup () {
   loadAchievements();
   addDimensions();
   updateCosts();
+  setLeverMaxHtml();
   updateDimensions();
   loadInfinityUpgrades();
   initChallengeTimes();
@@ -5737,9 +5775,12 @@ window.addEventListener('keydown', function(event) {
 
       // What the hell does g even do? REMOVING IT.
       // Looks like it buys galaxies, which is now USELESS.
+      case 76: // L, lever max
+          negateLeverClick();
+      break;
 
-      case 77: // M
-          document.getElementById("maxall").onclick()
+      case 77: // M, max
+          maxAll();
       break;
 
       case 83: // S = shift
