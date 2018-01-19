@@ -2559,6 +2559,10 @@ function timeDisplayShort(time) {
     return preformat(Decimal.floor((time) / 3600)) + ":" + preformat(Decimal.floor((time % 3600) / 60)) + ":" + preformat(Decimal.floor(time % 60))
 }
 
+function multiplyCrunchIp () {
+  return !!player.autobuyers['bigcrunch'] && player.autobuyers['bigcrunch'].ip !== undefined && player.autobuyers['bigcrunch'].ip !== null && player.autoCrunchMode === "amount";
+}
+
 function giveAchievement(name) {
     if (player.achievements.includes(revAchieveDict[name])) {
         return;
@@ -2574,7 +2578,7 @@ function giveAchievement(name) {
     if (name == "All your IP are belong to us" || name == "MAXIMUM OVERDRIVE") {
         player.infMult = player.infMult.times(4);
         player.autoIP = player.autoIP.times(4);
-        if (player.autoCrunchMode == "amount") {
+        if (multiplyCrunchIp()) {
           player.autobuyers['bigcrunch'].ip = player.autobuyers['bigcrunch'].ip.times(4);
         }
     }
@@ -3048,7 +3052,7 @@ document.getElementById("infiMult").onclick = function() {
         player.autoIP = player.autoIP.times(2);
         player.infMultCost = player.infMultCost.times(10)
         document.getElementById("infiMult").innerHTML = "Multiply infinity points from all sources by 2 <br>currently: "+shorten(player.infMult) +"x<br>Cost: "+shortenCosts(player.infMultCost)+" IP";
-        if (player.autobuyers['bigcrunch'].ip !== undefined && player.autobuyers['bigcrunch'].ip !== null && player.autoCrunchMode === "amount") {
+        if (multiplyCrunchIp()) {
           player.autobuyers['bigcrunch'].ip = player.autobuyers['bigcrunch'].ip.times(2);
         }
         if (player.autoCrunchMode === "amount") {
@@ -4989,7 +4993,7 @@ function startInterval() {
                 document.getElementById("infiMult").innerHTML = "Multiply infinity points from all sources by 2 <br>currently: "+shorten(player.infMult) +"x<br>Cost: "+shortenCosts(player.infMultCost)+" IP";
                 // No tickspeed boost needed here.
                 player.infinityPoints = player.infinityPoints.minus(player.infMultCost.dividedBy(10))
-                if (player.autobuyers['bigcrunch'].ip !== undefined && player.autobuyers['bigcrunch'].ip !== null && player.autoCrunchMode === "amount") {
+                if (multiplyCrunchIp()) {
                   player.autobuyers['bigcrunch'].ip = player.autobuyers['bigcrunch'].ip.times(2);
                 }
                 if (player.autoCrunchMode === "amount") {
