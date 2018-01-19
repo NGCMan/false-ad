@@ -207,7 +207,7 @@ var player = {
     partInfinityPoint2: 0,
     partInfinitied: 0,
     break: false,
-    challengeTimes: [600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31],
+    challengeTimes: initialChallengeTimes(),
     infchallengeTimes: [600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31, 600*60*24*31],
     lastTenRuns: [[600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1]],
     lastTenEternities: [[600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1], [600*60*24*31, 1]],
@@ -3920,12 +3920,6 @@ function checkForEndMe() {
     if (temp <= 50) {
       giveAchievement("End me");
     }
-    var temp2 = 0
-    for (var i=0; i<8;i++) {
-        temp2 += player.infchallengeTimes[i]
-    }
-    infchallengeTimes = temp2
-    if (temp2 <= 50) giveAchievement("Yes. This is hell.")
 }
 
 function hasAchievement(x) {
