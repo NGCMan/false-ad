@@ -28,7 +28,9 @@ can do 9, tickspeed, 6 in quick
 
 so: 12, 16
 
-13, 14, 15, 9, tickspeed, 6, 10, 11, 5
+Don't know what the best build is, let's try to figure it out.
+
+Maybe 12, 7, 9, tickspeed, 6, 2, 3, 8, 16 could work 
 
 each base is 2-previous base + 2-previous increment + slow linear
 1
