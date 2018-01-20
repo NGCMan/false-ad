@@ -2403,7 +2403,9 @@ function softReset (bulk, type) {
         leverClick: player.leverClick,
         options: player.options
     };
-    setExtraStartingDims();
+    if (player.shiftResets === 0 && player.boostResets === 0) {
+      setExtraStartingDims();
+    }
 
     if (hasAchievement("Faster than a potato")) {
       player.tickspeed = player.tickspeed.times(0.98);
@@ -4601,11 +4603,9 @@ function startChallenge(name) {
     if (player.infinitied >= 10) {
       giveAchievement("That's a lot of infinities");
     }
+    resetInfDimensions();
+    player.tickspeed = player.tickspeed.times(Decimal.pow(getTickSpeedMultiplier(), player.totalTickGained));
   }
-  resetInfDimensions();
-  player.tickspeed = player.tickspeed.times(Decimal.pow(getTickSpeedMultiplier(), player.totalTickGained))
-
-  setExtraStartingDims();
 }
 
 function getDimensionProductionPerSecond (tier) {
