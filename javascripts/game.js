@@ -3301,10 +3301,10 @@ var toggleAutobuyerTarget = function (id) {
   } else if (id === 'tickspeed') {
     if (player.autobuyers[id].mode === 'single') {
         player.autobuyers[id].mode = 'max';
-        document.getElementById("toggleBtn-tickSpeed").innerHTML="Buys max"
+        document.getElementById("toggleBtn-tickspeed").innerHTML="Buys max"
     } else {
         player.autobuyers[id].mode = 'single';
-        document.getElementById("toggleBtn-tickSpeed").innerHTML="Buys singles"
+        document.getElementById("toggleBtn-tickspeed").innerHTML="Buys singles"
     }
   } else {
     throw new Error('Impossible toggle: ' + is)
