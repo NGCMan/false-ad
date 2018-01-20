@@ -2959,12 +2959,12 @@ function glowText(id) {
 function canReset (type, bulk) {
   if (bulk === undefined || bulk === null) {
     let requirement = getResetDimInfo(type);
-    return player.dimAmount[requirement.dimNum - 1].gte(requirement.num) &&
+    return player.dimAmount[requirement.dimNum - 1].gte(requirement.num - .1) &&
     resetAvailable(type, bulk);
   } else {
     for (let i = 0; i < bulk; i++) {
       let requirement = getResetDimInfo(type, i);
-      if (!(player.dimAmount[requirement.dimNum - 1].gte(requirement.num) &&
+      if (!(player.dimAmount[requirement.dimNum - 1].gte(requirement.num - .1) &&
       resetAvailable(type, bulk))) {
         return false;
       }
