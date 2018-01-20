@@ -2296,6 +2296,12 @@ function setExtraStartingDims () {
   }
 }
 
+function resetResets () {
+  player.shiftResets = 0;
+  player.boostResets = 0;
+  player.dimBoostResets = 0;
+}
+
 function softReset (bulk, type) {
     if (type === 'shift') {
       player.shiftResets += bulk;
@@ -3959,8 +3965,7 @@ function setAchInitialMoney() {
 document.getElementById("bigcrunch").onclick = function () {
     if (inChallenge(player.currentChallenge, 'challenge-16') && player.challengeTarget.lt(getRealChallengeTarget().div(1.01))) {
       player.challengeTarget = Decimal.pow(player.challengeTarget, 2);
-      player.shiftResets = 0;
-      player.boostResets = 0;
+      resetResets();
       softReset(0, 'none');
       return;
     }
@@ -3971,8 +3976,7 @@ document.getElementById("bigcrunch").onclick = function () {
         (i) => 'challenge-' + i.toString());
       player.challengeTarget = getChallengeTarget(player.currentChallenge);
       player.corruptionStart = getCorruptionStart(player.currentChallenge);
-      player.shiftResets = 0;
-      player.boostResets = 0;
+      resetResets();
       softReset(0, 'none');
       return;
     }
@@ -4845,8 +4849,7 @@ function startInterval() {
         if (inChallenge(player.currentChallenge, 'challenge-14') && hasHappened(diff, 6000)) {
           // I think this is OK? It's basically just the definition of
           // "reset without dimension shifts".
-          player.shiftResets = 0;
-          player.boostResets = 0;
+          resetResets();
           softReset(0, 'none');
         }
 
