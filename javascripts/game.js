@@ -2473,7 +2473,7 @@ function getPerTickspeedBoost () {
 }
 
 function alterByCorruption (result, cost) {
-  return Math.pow(result, Math.min(1, player.corruptionStart.log2() / cost.log2(), 1.1));
+  return Math.pow(result, Math.min(1, player.corruptionStart.log2() / cost.log2()));
 }
 
 function getTickSpeedMultiplier (cost) {
