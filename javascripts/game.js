@@ -1107,8 +1107,6 @@ function transformSaveToDecimal() {
     player.tickSpeedCost = new Decimal(player.tickSpeedCost)
     player.tickspeed = new Decimal(player.tickspeed)
     player.dimCosts = player.dimCosts.map((i) => new Decimal(i));
-    player.dimBought = player.dimBought.map((i) => new Decimal(i));
-    player.dimTotalBought = player.dimTotalBought.map((i) => new Decimal(i));
     player.dimAmount = player.dimAmount.map((i) => new Decimal(i));
     player.dimPow = player.dimPow.map((i) => new Decimal(i));
     player.totalmoney = new Decimal(player.totalmoney)
@@ -1821,8 +1819,6 @@ function updateChallenges() {
 
 
 function DimensionDescription(tier) {
-    var name = TIER_NAMES[tier];
-
     let description = shortenDimensions(player['infinityDimension'+tier].amount) + ' (' + player['infinityDimension'+tier].bought + ')';
 
     if (tier < 8) {
@@ -2874,14 +2870,14 @@ function buyManyDimensionAutobuyer(tier, bulk) {
     if (!canBuyDimension(tier)) return false
     if (player.dimAmount[tier - 3].lt(cost)) return false
     if (canBuyDimension(tier)) {
-      if (cost.lt(player.dimAmount[tier - 3]) && player.dimBought[tier] !== 0 &&
+      if (cost.lt(player.dimAmount[tier - 3]) && player.dimBought[tier - 1] !== 0 &&
       !tooManyBought(tier, getNumRemaining(tier))) {
         player.dimAmount[tier - 3] = player.dimAmount[tier - 3].minus(cost)
         player.dimAmount[tier - 1] = Decimal.round(player.dimAmount[tier - 1].plus(getNumRemaining(tier)))
         player.dimPow[tier - 1] = player.dimPow[tier - 1].times(getDimensionPowerMultiplier(tier, player.dimCosts[tier - 1]))
         player.dimCosts[tier - 1] = player.dimCosts[tier - 1].times(getDimensionCostMultiplier(tier))
-        player.dimBought[tier - 1] = 0;
         player.dimTotalBought[tier - 1] += getNumRemaining(tier);
+        player.dimBought[tier - 1] = 0;
         boughtSomething = true;
       }
       var x = bulk;
@@ -2907,8 +2903,8 @@ function buyManyDimensionAutobuyer(tier, bulk) {
       player.dimAmount[tier - 1] = Decimal.round(player.dimAmount[tier - 1].plus(getNumRemaining(tier)))
       player.dimPow[tier - 1] = player.dimPow[tier - 1].times(getDimensionPowerMultiplier(tier, player.dimCosts[tier - 1]));
       player.dimCosts[tier - 1] = player.dimCosts[tier - 1].times(getDimensionCostMultiplier(tier))
-      player.dimBought[tier - 1] = 0;
       player.dimTotalBought[tier - 1] += getNumRemaining(tier);
+      player.dimBought[tier - 1] = 0;
       boughtSomething = true;
     }
     var x = bulk;
@@ -3054,8 +3050,6 @@ document.getElementById("infiMult").onclick = function() {
         document.getElementById("infiMult").innerHTML = "Multiply infinity points from all sources by 2 <br>currently: "+shorten(player.infMult) +"x<br>Cost: "+shortenCosts(player.infMultCost)+" IP";
         if (multiplyCrunchIp()) {
           player.autobuyers['bigcrunch'].ip = player.autobuyers['bigcrunch'].ip.times(2);
-        }
-        if (player.autoCrunchMode === "amount") {
           document.getElementById("ip-bigcrunch").value = player.autobuyers['bigcrunch'].ip;
         }
     }
@@ -3355,8 +3349,7 @@ function verify_save(obj) {
 
 document.getElementById("importbtn").onclick = function () {
     var save_data = prompt("Input your save.");
-    save_data = save_data.constructor !== String ? save_data = "":
-    secretThemeKey = save_data;
+    save_data = (save_data && save_data.constructor === String) ? save_data : "";
     if (sha512_256(save_data) === "de24687ee7ba1acd8f5dc8f71d41a3d4b7f14432fff53a4d4166e7eea48a88c0") {
         player.options.theme = "S1";
         setTheme(player.options.theme);
@@ -4989,8 +4982,6 @@ function startInterval() {
                 player.infinityPoints = player.infinityPoints.minus(player.infMultCost.dividedBy(10))
                 if (multiplyCrunchIp()) {
                   player.autobuyers['bigcrunch'].ip = player.autobuyers['bigcrunch'].ip.times(2);
-                }
-                if (player.autoCrunchMode === "amount") {
                   document.getElementById("ip-bigcrunch").value = player.autobuyers['bigcrunch'].ip;
                 }
             }
