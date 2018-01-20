@@ -9,6 +9,8 @@ const normal_infinity = Decimal.pow(2, Decimal.pow(2, 10));
 
 const normal_corruption_start = Decimal.pow(2, Decimal.pow(2, 12));
 
+const max_antimatter = Decimal.pow(2, Decimal.pow(2, 22));
+
 function getChallId (chall) {
   if (typeof chall !== 'string') {
     throw new Error('Non-challenge ' + chall);
@@ -1068,7 +1070,6 @@ function onLoad() {
     transformSaveToDecimal();
     updateMilestones();
     updateEternityUpgrades()
-    loadInfAutoBuyers()
     resizeCanvas()
     checkForEndMe()
 }
@@ -1752,11 +1753,6 @@ function updateCosts() {
 
   document.getElementById("tickSpeed").innerHTML = 'Cost: ' + shortenCosts(player.tickSpeedCost);
 
-  for (var i=1; i<=8; i++) {
-
-      document.getElementById("infMax"+i).innerHTML = "Cost: " + shortenCosts(player["infinityDimension"+i].cost) + " IP"
-  }
-
   for (var i=1; i<=4; i++) {
 
       document.getElementById("timeMax"+i).innerHTML = "Cost: " + shortenCosts(player["timeDimension"+i].cost) + " EP"
@@ -1827,63 +1823,6 @@ function DimensionDescription(tier) {
 
     return description;
 }
-
-
-function DimensionRateOfChange(tier) {
-    let toGain = DimensionProduction(tier+1)
-    var current = Decimal.max(player["infinityDimension"+tier].amount, 1);
-    var change  = toGain.times(10).dividedBy(current);
-    return change;
-}
-
-
-
-
-function updateInfinityDimensions() {
-    for (let tier = 1; tier <= 8; ++tier) {
-        document.getElementById("infD"+tier).innerHTML = DISPLAY_NAMES[tier] + " Infinity Dimension x" + shortenDimensions(DimensionPower(tier));
-        document.getElementById("infAmount"+tier).innerHTML = DimensionDescription(tier);
-        var name = TIER_NAMES[tier];
-        if (!player.infDimensionsUnlocked[tier-1]) {
-            break;
-        }
-
-        document.getElementById("infRow"+tier).style.display = "table-row";
-        document.getElementById("infRow"+tier).style.visibility = "visible";
-    }
-}
-
-function DimensionProduction(tier) {
-    var dim = player["infinityDimension"+tier]
-    if (player.challenges.includes("postc6")) return dim.amount.times(DimensionPower(tier)).dividedBy(player.tickspeed.dividedBy(1000).pow(0.0005))
-    else return dim.amount.times(DimensionPower(tier))
-}
-
-function DimensionPower(tier) {
-    var dim = player["infinityDimension"+tier]
-    var mult = dim.power.times(infDimPow)
-    // Irrelevant achievement thing here.
-
-    if (player.timestudy.studies.includes(82)) {
-        mult = mult.times(Decimal.pow(1.0000109,Math.pow(totalResets(), 2)))
-    }
-
-    if (player.eternityUpgrades.includes(1)) {
-        mult = mult.times(player.eternityPoints.plus(1).pow(3))
-    }
-
-    if (player.eternityUpgrades.includes(2)) mult = mult.times(Decimal.pow(player.eternities, Math.log(player.eternities*2+1)/Math.log(4)))
-
-    if (player.eternityUpgrades.includes(3)) mult = mult.times(Decimal.pow(2,300/Math.max(infchallengeTimes, 7.5)))
-
-    if (player.timestudy.studies.includes(92)) mult = mult.times(Decimal.pow(2, 600/Math.max(player.bestEternity, 20)))
-    if (player.timestudy.studies.includes(162)) mult = mult.times(1e11)
-
-    return mult
-}
-
-
-
 
 function resetInfDimensions() {
 
@@ -1966,39 +1905,6 @@ function buyMaxInfDims(tier) {
     dim.amount = dim.amount.plus(10*toBuy);
     dim.power = dim.power.times(Decimal.pow(infPowerMults[tier], toBuy))
     dim.baseAmount += 10*toBuy
-}
-
-function switchAutoInf(tier) {
-    if (player.infDimBuyers[tier-1]) {
-        player.infDimBuyers[tier-1] = false
-        document.getElementById("infauto"+tier).innerHTML = "Auto: OFF"
-    } else {
-        player.infDimBuyers[tier-1] = true
-        document.getElementById("infauto"+tier).innerHTML = "Auto: ON"
-    }
-}
-
-function toggleAllInfDims() {
-    if (player.infDimBuyers[0]) {
-        for (var i=1; i<9; i++) {
-            player.infDimBuyers[i-1] = false
-            document.getElementById("infauto"+i).innerHTML = "Auto: OFF"
-        }
-    } else {
-        for (var i=1; i<9; i++) {
-            if (player.eternities - 10>=i) {
-                player.infDimBuyers[i-1] = true
-                document.getElementById("infauto"+i).innerHTML = "Auto: ON"
-            }
-        }
-    }
-}
-
-function loadInfAutoBuyers() {
-    for (var i=1; i<9; i++) {
-        if (player.infDimBuyers[i-1]) document.getElementById("infauto"+i).innerHTML = "Auto: ON"
-        else document.getElementById("infauto"+i).innerHTML = "Auto: OFF"
-    }
 }
 
 
@@ -4012,9 +3918,7 @@ document.getElementById("bigcrunch").onclick = function () {
         if (challFullName !== "" && player.challengeTimes[challFullName] > player.thisInfinityTime) {
           player.challengeTimes[challFullName] = player.thisInfinityTime;
         }
-        if ((player.bestInfinityTime > 600 && !player.break) || (challFullName !== "" && !player.options.retryChallenge)) {
-          showTab("dimensions");
-        }
+        showTab("dimensions");
         if (challFullName !== "" && !player.challenges.includes(challFullName)) {
             player.challenges.push(challFullName);
         }
@@ -4412,11 +4316,9 @@ function eternity() {
 
         var autobuyers = document.getElementsByClassName('autoBuyerDiv')
         if (player.eternities < 2) {
-            for (var i=0; i<autobuyers.length;i++) autobuyers.item(i).style.display = "none"
-            document.getElementById("buyerBtnDimBoost").style.display = "inline-block"
-            document.getElementById("buyerBtnGalaxies").style.display = "inline-block"
-            document.getElementById("buyerBtnInf").style.display = "inline-block"
-            document.getElementById("buyerBtnTickSpeed").style.display = "inline-block"
+            for (let i of autobuyerList) {
+              document.getElementById("buyerBtn-" + i).style.display = "inline-block";
+            }
         }
         updateAutobuyers();
         setAchInitialMoney();
@@ -4434,7 +4336,7 @@ function eternity() {
         IPminpeak = new Decimal(0)
         updateMilestones()
         resetTimeDimensions()
-        if (player.eternities < 20) {
+        if (player.eternities < 20 && player.autobuyers['shift']) {
           player.autobuyers['shift'].bulk = 1
         }
         document.getElementById("infinityPoints1").innerHTML = "You have <span class=\"IPAmount1\">"+shortenDimensions(player.infinityPoints)+"</span> Infinity points."
@@ -4639,13 +4541,6 @@ document.getElementById("quickReset").onclick = function () {
     // That was mean in the first place, and even if it makes challenge 7
     // a bit nicer, who cares? There are a ton of other hard challenges.
     softReset(0, 'none');
-}
-
-
-function updateInfPower() {
-    document.getElementById("infPowAmount").innerHTML = shortenMoney(player.infinityPower)
-    document.getElementById("infDimMultAmount").innerHTML = shortenMoney(player.infinityPower.pow(7))
-    document.getElementById("infPowPerSec").innerHTML = "You are getting " +shortenDimensions(DimensionProduction(1))+" Infinity Power per second."
 }
 
 function updateTimeShards() {
@@ -4886,7 +4781,7 @@ function startInterval() {
 
 
 
-        if (player.money.lt(player.challengeTarget) || infinityBrokenInCurrentChallenge()) {
+        if (player.money.lt(player.challengeTarget) || (infinityBrokenInCurrentChallenge() && player.money.lt(max_antimatter))) {
 
             if (!inChallenge(player.currentChallenge, "challenge-bigcrunch")) {
                 for (let tier = MAX_DIMENSION - 1; tier >= 1; --tier) {
@@ -4913,13 +4808,6 @@ function startInterval() {
         if (player.eternities > 0) document.getElementById("tdtabbtn").style.display = "inline-block"
 
         for (let tier=1;tier<9;tier++) {
-            if (tier != 8 && player.infDimensionsUnlocked[tier-1]) player["infinityDimension"+tier].amount = player["infinityDimension"+tier].amount.plus(DimensionProduction(tier+1).times(diff/100))
-            if (player.infDimensionsUnlocked[tier-1]) {
-                document.getElementById("infRow"+tier).style.display = "inline-block"
-                document.getElementById("dimTabButtons").style.display = "inline-block"
-            }
-            else document.getElementById("infRow"+tier).style.display = "none"
-
             if (tier <4) player["timeDimension"+tier].amount = player["timeDimension"+tier].amount.plus(getTimeDimensionProduction(tier+1).times(diff/100))
         }
 
@@ -4928,8 +4816,6 @@ function startInterval() {
 
         if (player.money.gte("17.1717e1717")) giveAchievement("This achievement doesn't exist")
         if (player.money.gte("1e35000")) giveAchievement("I got a few to spare")
-
-        player.infinityPower = player.infinityPower.plus(DimensionProduction(1).times(diff/10));
 
         player.timeShards = player.timeShards.plus(getTimeDimensionProduction(1).times(diff/10))
 
@@ -4952,8 +4838,7 @@ function startInterval() {
 
         if (player.money.gte(player.challengeTarget) && !infinityBrokenInCurrentChallenge()) {
             document.getElementById("bigcrunch").style.display = 'inline-block';
-            if ((player.currentChallenge.name === "" || player.options.retryChallenge) && (player.bestInfinityTime <= 600 || player.break)) {}
-            else showTab('emptiness');
+            showTab('emptiness');
         } else {
           document.getElementById("bigcrunch").style.display = 'none';
         }
@@ -4994,8 +4879,6 @@ function startInterval() {
         updateMoney();
         updateCoinPerSec();
         updateInfCosts()
-        updateInfinityDimensions();
-        updateInfPower();
         updateTimeDimensions()
         updateTimeShards()
         if (calcPerSec(player.dimAmount[0], player.dimPow[0], player.infinityUpgrades.includes("1infStat")).gt(player.money)) {
@@ -5025,11 +4908,6 @@ function startInterval() {
           'storebtn' : 'unavailablebtn';
           document.getElementById(name + 'Max').className = (canBuyMany && !tooManyBought(tier, getNumRemaining(tier))) ?
           'storebtn' : 'unavailablebtn';
-        }
-
-        for (var tier = 1; tier < 9; tier++) {
-            if (player.infinityPoints.gte(player["infinityDimension"+tier].cost)) document.getElementById("infMax"+tier).className = "storebtn"
-            else document.getElementById("infMax"+tier).className = "unavailablebtn"
         }
 
         for (var tier = 1; tier < 5; tier++) {
@@ -5079,7 +4957,8 @@ function startInterval() {
         document.getElementById("infinitybtn").style.display = "none";
         document.getElementById("challengesbtn").style.display = "none";
 
-        if (player.money.gte(player.challengeTarget) && (((player.currentChallenge.name !== "" && player.money.gte(player.challengeTarget)) && !player.options.retryChallenge) || (player.bestInfinityTime > 600 && !player.break))) {
+        if (player.money.gte(player.challengeTarget) &&
+        (player.bestInfinityTime > 600 || !infinityBrokenInCurrentChallenge())) {
             document.getElementById("dimensionsbtn").style.display = "none";
             document.getElementById("optionsbtn").style.display = "none";
             document.getElementById("statisticsbtn").style.display = "none";

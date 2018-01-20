@@ -30,7 +30,31 @@ so: 12, 16
 
 Don't know what the best build is, let's try to figure it out.
 
-Maybe 12, 7, 9, tickspeed, 6, 2, 3, 8, 16 could work 
+It's possible that someone could make a quick 12, 7
+Like 12, 7, 13, 14, 15, 6, 9, tickspeed, 10
+
+Then the slow counterpart is apparently impossible, though, from lack of dimensions (big crunch with 4)
+
+12, 6, 8, big crunch
+
+8 and crunch need separation
+6 and crunch need separation
+
+So:
+
+8 and 6 need to be together, with crunch on the other side
+
+What about a quick crunch?
+
+13, 14, 15, bigcrunch, 9, 2, 3, 5, 16
+
+Then we get stuck with 11, which is a disaster.
+
+13, 14, 15, bigcrunch, 9, 2, 3, 5, 11?
+
+This almost works, but we get stuck at 77.68% in the second part
+
+13, 14, 15, bigcrunch, 9, 10, shift, 5, 11?
 
 each base is 2-previous base + 2-previous increment + slow linear
 1
