@@ -9,8 +9,6 @@ const normal_infinity = Decimal.pow(2, Decimal.pow(2, 10));
 
 const normal_corruption_start = Decimal.pow(2, Decimal.pow(2, 12));
 
-const max_antimatter = Decimal.pow(2, Decimal.pow(2, 22));
-
 function getChallId (chall) {
   if (typeof chall !== 'string') {
     throw new Error('Non-challenge ' + chall);
@@ -1348,6 +1346,9 @@ function infinityBrokenInCurrentChallenge () {
 }
 
 function formatValue(notation, value, places, placesUnder1000) {
+    if (notation === 'Iroha') {
+      return iroha(value, 5);
+    }
     if (((new Decimal(value)).lt(player.challengeTarget) || infinityBrokenInCurrentChallenge()) && (value >= 1000)) {
         if (isDecimal(value)) {
            var power = value.e
@@ -2382,6 +2383,10 @@ function alterByCorruption (result, cost) {
   return Math.pow(result, Math.min(1, player.corruptionStart.log2() / cost.log2()));
 }
 
+function nerfTheTickspeedBoostsPlease (boosts){
+  return Math.min(boosts, 100) + Math.pow(Math.max(0, boosts - 100), .5);
+}
+
 function getTickSpeedMultiplier (cost) {
   if (!cost) {
     cost = new Decimal(1);
@@ -2391,7 +2396,7 @@ function getTickSpeedMultiplier (cost) {
     baseMultiplier = 1 - 1 / (2 * getCurrentBase(player.currentChallenge));
   }
   let perBoost = getPerTickspeedBoost();
-  let result = baseMultiplier * Math.pow(1 - perBoost, player.infTickspeedBoosts);
+  let result = baseMultiplier * Math.pow(1 - perBoost, nerfTheTickspeedBoostsPlease(player.infTickspeedBoosts));
   let mod_result = alterByCorruption(result, cost);
   return mod_result;
 }
@@ -3119,10 +3124,10 @@ function updateMilestones() {
 function infMultAutoToggle() {
     if (player.infMultBuyer) {
         player.infMultBuyer = false
-        document.getElementById("infmultbuyer").innerHTML = "Autobuy IP mult OFF"
+        document.getElementById("infmultbuyer").innerHTML = "Autobuy IP mult and boosts OFF"
     } else {
         player.infMultBuyer = true
-        document.getElementById("infmultbuyer").innerHTML = "Autobuy IP mult ON"
+        document.getElementById("infmultbuyer").innerHTML = "Autobuy IP mult and boosts ON"
     }
 }
 
@@ -3381,6 +3386,9 @@ document.getElementById("notation").onclick = function () {
         player.options.notation = "Letters";
         document.getElementById("notation").innerHTML = ("Notation: Letters")
     } else if (player.options.notation === "Letters") {
+        player.options.notation = "Iroha";
+        document.getElementById("notation").innerHTML = ("Notation: いろは")
+    } else if (player.options.notation === "Iroha") {
         player.options.notation = "Standard";
         document.getElementById("notation").innerHTML = ("Notation: Standard")
     } else if (player.options.notation === "Standard") {
@@ -4781,7 +4789,7 @@ function startInterval() {
 
 
 
-        if (player.money.lt(player.challengeTarget) || (infinityBrokenInCurrentChallenge() && player.money.lt(max_antimatter))) {
+        if (player.money.lt(player.challengeTarget) || infinityBrokenInCurrentChallenge()) {
 
             if (!inChallenge(player.currentChallenge, "challenge-bigcrunch")) {
                 for (let tier = MAX_DIMENSION - 1; tier >= 1; --tier) {
@@ -4871,6 +4879,15 @@ function startInterval() {
                   player.autobuyers['bigcrunch'].ip = player.autobuyers['bigcrunch'].ip.times(2);
                   document.getElementById("ip-bigcrunch").value = player.autobuyers['bigcrunch'].ip;
                 }
+            }
+
+            var diff2 = player.infinityPoints.e - player.tickspeedBoostCost.e + 1;
+
+            if (diff2 > 0) {
+                player.infTickspeedBoosts = player.infTickspeedBoosts + diff2;
+                document.getElementById("tickspeedBoost").innerHTML = "Get a Tickspeed Boost (persists between infinities) <br>currently: " + player.infTickspeedBoosts + "<br>Cost: " +shortenCosts(player.tickspeedBoostCost)+ " IP";
+                player.tickspeedBoostCost = player.tickspeedBoostCost.times(Decimal.pow(10, diff2));
+                player.infinityPoints = player.infinityPoints.minus(player.tickspeedBoostCost.dividedBy(10))
             }
         }
 
